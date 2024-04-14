@@ -11,6 +11,7 @@ module.exports = {
         proxy: {
             '/api/**': {
                 target: 'http://localhost:8080/',
+                target: 'https://hi',
                 secure: false,
                 changeOrigin: true
             }

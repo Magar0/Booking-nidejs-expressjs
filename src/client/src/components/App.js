@@ -16,6 +16,8 @@ const App = () => {
   });
   const [lastBooking, setLastBooking] = useState({});
 
+  const API_URL = "https://booking-nodejs-expressjs-backend-almabetter.vercel.app"
+
   //handle change in input
   const changeMovie = (e) => setMovie(e);
   const changeSlot = (e) => setSlot(e);
@@ -27,7 +29,7 @@ const App = () => {
 
   //fetching last booking details
   const getLastBooking = () => {
-    fetch('/api/booking')
+    fetch(`${API_URL}/api/booking`)
       .then(res => res.json())
       .then(data => setLastBooking(data))
       .catch(err => console.log(err))
@@ -52,7 +54,7 @@ const App = () => {
         },
         body: JSON.stringify({ movie, slot, seats: seat })
       }
-      const res = await fetch("/api/booking", option)
+      const res = await fetch(`${API_URL}/api/booking`, option)
       if (res.ok) {
         setLastBooking({ seats: seat, slot, movie })
         // resetting input on success
@@ -84,7 +86,6 @@ const App = () => {
     if (storedSlot) {
       setSlot(storedSlot)
     }
-
   }, [])
 
   useEffect(() => {
