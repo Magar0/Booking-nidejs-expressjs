@@ -16,8 +16,7 @@ const App = () => {
   });
   const [lastBooking, setLastBooking] = useState({});
 
-  const API_URL = "https://booking-nodejs-expressjs-backend-almabetter.vercel.app"
-
+  const API_URL = process.env.REACT_APP_URL || "https://localhost:3000"
   //handle change in input
   const changeMovie = (e) => setMovie(e);
   const changeSlot = (e) => setSlot(e);
@@ -63,6 +62,7 @@ const App = () => {
         setSeat({
           A1: 0, A2: 0, A3: 0, A4: 0, D1: 0, D2: 0
         })
+        await localStorage.clear()
         alert("Booking successful!")
       } else alert("Error Booking!!")
     } catch (err) {
@@ -89,14 +89,17 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("movie", movie)
-    localStorage.setItem("seats", JSON.stringify(seat))
-    localStorage.setItem("slot", slot)
+    if (movie || seat.A1 || seat.A2 || seat.A3 || seat.A4 || seat.D1 || seat.D2 || slot) {
+      localStorage.setItem("movie", movie)
+      localStorage.setItem("seats", JSON.stringify(seat))
+      localStorage.setItem("slot", slot)
+    }
   }, [movie, slot, seat])
+
   // write your code here
   return (<>
     <div className="container pt-4 mainBox">
-      <h1>Book The Show!!</h1>
+      <h1>Book The Show!</h1>
       <div className="row ">
 
         <div className="col-8">
