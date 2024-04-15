@@ -63,5 +63,5 @@ npm start
 
 | Endpoint       | Description          | Method | Request Body                                                                                                   | Response Format (Example)           |
 | -------------- | -------------------- | ------ | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| `/api/booking` | last booking details | GET    | None                                                                                                           | JSON (movie, slot and seat details) |
-| `/api/booking` | Book seat            | POST   | `{movie:string, slot:string, seats:{A1?:number , A2?:number, A3?:number, A4?:number, D1?:number, D2?:number}}` | JSON (movie, slot and seat details) |
+| `/api/booking` | last booking details | GET    | None                                                                                                           | `{movie:string, slot:string, seats:{A1?:number , A2?:number, A3?:number, A4?:number, D1?:number, D2?:number}}` <br/> And If no Booking exist:<br/>`{message: "no previous booking found" }`|
+| `/api/booking` | Book seat            | POST   | `{movie:string, slot:string, seats:{A1?:number , A2?:number, A3?:number, A4?:number, D1?:number, D2?:number}}` |  `{movie:string, slot:string, seats:{A1?:number , A2?:number, A3?:number, A4?:number, D1?:number, D2?:number}}` |
